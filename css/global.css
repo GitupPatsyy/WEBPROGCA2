@@ -1,0 +1,36 @@
+html {
+   font-family: 'Roboto', sans-serif; 
+   font-weight: lighter;
+}
+.center-content {
+    text-align: center;
+}
+.usrinput {
+    padding: 5px;
+    align-content: center;
+}
+
+.bodystyle {
+    border: groove gray;
+    height: 50%;
+}
+
+.errors {
+    display: inline-block;
+    text-align: left;
+    padding-left: 5px;
+    color: red;
+}
+
+.edit_button {
+    height: 30px;
+    width: 80px;
+}
+.foot {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+}
+
