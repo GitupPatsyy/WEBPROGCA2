@@ -28,11 +28,16 @@ $statement = $gateway->getGarages();
 
     </head>
     <body>
-        <div class="row">
+
+        <div class="row header_style">
             <?php require 'utilities/header.php'; ?>
             <?php require 'utilities/toolbar.php'; ?>
         </div>
+        <br>
         <div class="container">
+            <hr>
+            <h4>View All Garages</h4>
+            <hr>
             <table class="table-responsive">
                 <thead>
                     <tr>
@@ -57,7 +62,7 @@ $statement = $gateway->getGarages();
                         echo '<td>'
                         . '<a href="viewGarage.php?id=' . $row['garageID'] . '"><img src="icons/search67.png" height="40px" width="40px" style="padding-right: 10px"/></a>'
                         . '<a href="editgarageform.php?id=' . $row['garageID'] . '"><img src="icons/edi.png" height="40px" width="40px"  /></a>'
-                        . '<a class="deletebtn" href="deletegarage.php?id=' . $row['garageID'] . '"><img class="deletebtn" src="icons/del.png"  height="40px" width="40px" style="padding-left: 10px"/></a>';
+                        . '<a class="deletebtn" href="deletegarage.php?id=' . $row['garageID'] . '"><img class="" src="icons/del.png"  height="40px" width="40px" style="padding-left: 10px"/></a>';
                         echo '</tr>';
 
                         $row = $statement->fetch(PDO::FETCH_ASSOC);
@@ -68,6 +73,7 @@ $statement = $gateway->getGarages();
 
             <a href="addgarageform.php"> <img src="icons/add.png" width="40" height="40"></a>
         </div>
+        <?php require 'utilities/footer.php'; ?> 
     </body>
 
 </html>

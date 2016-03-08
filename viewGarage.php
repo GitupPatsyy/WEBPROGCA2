@@ -37,6 +37,10 @@ if (!$row) {
         <?php require 'utilities/scripts.php'; ?>
     </head>
     <body>
+        <div class="row header_style">
+            <?php require 'utilities/header.php'; ?>
+            <?php require 'utilities/toolbar.php'; ?>
+        </div>
 
         <table class="container">
             <thead>
@@ -52,7 +56,7 @@ if (!$row) {
                     <th>Over Night?</th>
                 </tr>
                 <?php
-                echo '<tr class="pure-table-odd">';
+                echo '<tr>';
                 echo '<td>' . $row['garageAddress'] . '</td>';
                 echo '<td>' . $row['phoneNo'] . '</td>';
                 echo '<td>' . $row['managerName'] . '</td>';
@@ -65,5 +69,6 @@ if (!$row) {
                 echo '</tr>';
                 ?>
         </table>
+        <?php require 'utilities/footer.php'; ?> 
     </body>
 </html>
