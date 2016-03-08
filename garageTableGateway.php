@@ -58,12 +58,18 @@ class garageTableGateway {
             "garageURL" => $garage->getGarageURL(),
             "overNight" => $garage->getOvernight()
         );
+        
+                        echo "<pre>";
+        print_r($parameters);
+        print_r($garage);
+        echo "</pre>";
 
         $exec = $statement->execute($parameters);
 
         if (!$exec) {
             die("Could not insert garage");
         }
+
 
         $id = $this->connection->lastInsertId();
 
