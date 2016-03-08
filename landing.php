@@ -10,22 +10,24 @@
     </head>
     <body>
 
-        <div class="row">
-                <?php require 'utilities/header.php'; ?>
-                <?php require 'utilities/toolbar.php'; ?>
+        <div class="row header_style">
+            <?php require 'utilities/header.php'; ?>
+            <?php require 'utilities/toolbar.php'; ?>
+            <?php require 'utilities/navbar.php'; ?>
+
         </div>
         <div class="center-content">
             <div>
                 <h3>Welcome to our lovely internal system.</h3>
-                
-                
-                
-        
-                
+
+
+
+
+
             </div>
 
         </div>
-        
+
         <?php require 'utilities/footer.php'; ?> 
 
 
