@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by IntelliJ IDEA.
  * User: rorypb
@@ -13,6 +14,11 @@ require_once 'gformprocess.php';
 
 
 validate($formdata, $errors);
+
+//    echo '<pre>';
+//    print_r($errors);
+//    print_r($formdata);
+//    echo "</pre>";
 
 if (empty($errors)) {
 
@@ -32,20 +38,20 @@ if (empty($errors)) {
     $manager_email_valid = filter_var($manager_email, FILTER_VALIDATE_EMAIL);
 
     $garage = new Garage($garage_address, $phone_no, $manager_name, $garage_name, $garage_id, $service_date, $manager_email, $garage_url, $over_night);
+    
 
 
     $connection = Connection::getInstance();
     $gateway = new garageTableGateway($connection);
 
     $id = $gateway->insertGarage($garage);
-    
+
 
 //Redirects the user to the specific page
-    header('Location: index.php');
+    header('Location: viewall.php');
     exit();
-}
-
-else {
+    
+} else {
     require "addgarageform.php";
 }
 
