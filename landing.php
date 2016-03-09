@@ -9,28 +9,18 @@
         <?php require 'utilities/scripts.php'; ?>
     </head>
     <body>
-
-        <div class="row header_style">
-            <?php require 'utilities/header.php'; ?>
-            <?php require 'utilities/toolbar.php'; ?>
-            <?php require 'utilities/navbar.php'; ?>
-
-        </div>
-        <div class="center-content">
-            <div>
-                <h3>Welcome to our lovely internal system.</h3>
-
-
+        <div class="container-fluid">
+                <?php require 'utilities/header.php'; ?>
+            <div class="row page-header home_content">
+                <h3 class="left-content">Welcome to our lovely internal system.</h3>
 
 
 
             </div>
-
+            <div class="row">
+                <?php require 'utilities/footer.php'; ?> 
+            </div>
         </div>
-
-        <?php require 'utilities/footer.php'; ?> 
-
-
 
     </body>
 
