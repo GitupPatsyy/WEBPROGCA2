@@ -37,38 +37,38 @@ if (!$row) {
         <?php require 'utilities/scripts.php'; ?>
     </head>
     <body>
-        <div class="row header_style">
-            <?php require 'utilities/header.php'; ?>
-            <?php require 'utilities/toolbar.php'; ?>
+        <div class="container-fluid">
+                <?php require 'utilities/header.php'; ?>
+            <div class="row page-header home_content">
+                <table class="col-lg-push-1 col-lg-10 col-lg-pull-1">
+                    <thead>
+                        <tr>
+                            <th>Address</th>
+                            <th>Phone No.</th>
+                            <th>Manager Name</th>
+                            <th>Garage Name</th>
+                            <th>Garage ID</th>
+                            <th>Service Date</th>
+                            <th>Manager Email</th>
+                            <th>Garage URL</th>
+                            <th>Over Night?</th>
+                        </tr>
+                        <?php
+                        echo '<tr>';
+                        echo '<td>' . $row['garageAddress'] . '</td>';
+                        echo '<td>' . $row['phoneNo'] . '</td>';
+                        echo '<td>' . $row['managerName'] . '</td>';
+                        echo '<td>' . $row['nameofGarage'] . '</td>';
+                        echo '<td>' . $row['garageID'] . '</td>';
+                        echo '<td>' . $row['dateService'] . '</td>';
+                        echo '<td>' . $row['managerEmail'] . '</td>';
+                        echo '<td>' . $row['garageURL'] . '</td>';
+                        echo '<td>' . $row['overNight'] . '</td>';
+                        echo '</tr>';
+                        ?>
+                </table>
+            </div>
         </div>
-
-        <table class="container">
-            <thead>
-                <tr>
-                    <th>Address</th>
-                    <th>Phone No.</th>
-                    <th>Manager Name</th>
-                    <th>Garage Name</th>
-                    <th>Garage ID</th>
-                    <th>Service Date</th>
-                    <th>Manager Email</th>
-                    <th>Garage URL</th>
-                    <th>Over Night?</th>
-                </tr>
-                <?php
-                echo '<tr>';
-                echo '<td>' . $row['garageAddress'] . '</td>';
-                echo '<td>' . $row['phoneNo'] . '</td>';
-                echo '<td>' . $row['managerName'] . '</td>';
-                echo '<td>' . $row['nameofGarage'] . '</td>';
-                echo '<td>' . $row['garageID'] . '</td>';
-                echo '<td>' . $row['dateService'] . '</td>';
-                echo '<td>' . $row['managerEmail'] . '</td>';
-                echo '<td>' . $row['garageURL'] . '</td>';
-                echo '<td>' . $row['overNight'] . '</td>';
-                echo '</tr>';
-                ?>
-        </table>
         <?php require 'utilities/footer.php'; ?> 
     </body>
 </html>

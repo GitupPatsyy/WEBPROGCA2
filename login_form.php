@@ -14,18 +14,16 @@ and open the template in the editor.
 
     </head>
     <body>
-        <div class="row header_style">
-            <?php require 'utilities/header.php'; ?>
-            <?php require 'utilities/toolbar.php'; ?>
-        </div>
-        <div class="container">
-            <div class="row col-lg-offset-4 col-lg-6">
+        <div class="container-fluid">
+                <?php require 'utilities/header.php'; ?>
+
+            <div class="row page-header home_content">
                 <!--opening form-->        <br>
                 <hr>
-                <h4>Login</h4>
+                <h4 class="center-content">Login</h4>
                 <hr>
 
-                <form  action="login.php" method="POST">
+                <form  action="login.php" method="POST" class="col-lg-push-2 col-lg-8 col-lg-pull-2">
                     <div class="form-group">
                         <input type="text" class="form-control" name="username" value="<?php if (isset($formdata['username'])) echo $formdata['username']; ?>" />
                         <span class="errors">

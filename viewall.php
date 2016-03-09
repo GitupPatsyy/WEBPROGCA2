@@ -28,17 +28,17 @@ $statement = $gateway->getGarages();
 
     </head>
     <body>
-
-        <div class="row header_style">
-            <?php require 'utilities/header.php'; ?>
-            <?php require 'utilities/toolbar.php'; ?>
-        </div>
+        <div class="container-fluid">
+                <?php require 'utilities/header.php'; ?>
         <br>
-        <div class="container">
+        <div class="row page-header home_content">
             <hr>
             <h4>View All Garages</h4>
             <hr>
-            <table class="table-responsive">
+            <table class="col-lg-push-2 col-lg-8 col-lg-pull-2">
+                <div class="row col-lg-push-2 col-lg-8 col-lg-pull-2">
+                    <a href="addgarageform.php"> <img src="icons/add.png" width="40" height="40"  style="margin: 3px;" ></a>
+                </div>
                 <thead>
                     <tr>
                         <th>Address</th>
@@ -60,20 +60,21 @@ $statement = $gateway->getGarages();
                         echo '<td>' . $row['nameofGarage'] . '</td>';
                         echo '<td>' . $row['garageID'] . '</td>';
                         echo '<td>'
-                        . '<a href="viewGarage.php?id=' . $row['garageID'] . '"><img src="icons/search67.png" height="40px" width="40px" style="padding-right: 10px"/></a>'
-                        . '<a href="editgarageform.php?id=' . $row['garageID'] . '"><img src="icons/edi.png" height="40px" width="40px"  /></a>'
-                        . '<a class="deletebtn" href="deletegarage.php?id=' . $row['garageID'] . '"><img class="" src="icons/del.png"  height="40px" width="40px" style="padding-left: 10px"/></a>';
+                        . '<a href="viewGarage.php?id=' . $row['garageID'] . '"><img src="icons/view.png"  height="40px" width="40px"  style="margin: 3px;"  /></a>'
+                        . '<a href="editgarageform.php?id=' . $row['garageID'] . '"><img src="icons/edit.png" height="40px" width="40px"   style="margin: 3px;" /></a>'
+                        . '<a class="deletebtn" href="deletegarage.php?id=' . $row['garageID'] . '"><img class="" src="icons/delete.png"  height="40px" width="40px" style="margin: 3px;" /></a>';
                         echo '</tr>';
 
                         $row = $statement->fetch(PDO::FETCH_ASSOC);
                     }
                     ?>
-
+            
             </table>
 
-            <a href="addgarageform.php"> <img src="icons/add.png" width="40" height="40"></a>
+
         </div>
         <?php require 'utilities/footer.php'; ?> 
+        </div>
     </body>
 
 </html>
