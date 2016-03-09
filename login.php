@@ -1,67 +1,76 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 require_once 'utilities/functions.php';
 require_once 'classes/User.php';
+require_once 'connection.php';
 require_once 'classes/UserTable.php';
 
 start_session();
 
+// try to register the user - if there are any error/
+// exception, catch it and send the user back to the
+// login form with an error message
 try {
     $formdata = array();
     $errors = array();
-    
+
     $input_method = INPUT_POST;
-    
-    $input_method['username'] = filter_input($input_method, "username", FILTER_SANITIZE_STRING);
-    $input_method['password'] = filter_input($input_method,  "password", FILTER_SANITIZE_STRING);
-    
-    //Throw an exception if any of the form fields are empty
-    if (empty($formdata['username'])){
-        $errors['username'] = "Username Required";
+
+    $formdata['username'] = filter_input($input_method, "username", FILTER_SANITIZE_STRING);
+    $formdata['password'] = filter_input($input_method, "password", FILTER_SANITIZE_STRING);
+
+    // throw an exception if any of the form fields
+    // are empty
+    if (empty($formdata['username'])) {
+        $errors['username'] = "Username required";
     }
-    
-    if (empty($formdata['password'])){
-        $errors['password'] = 'Password Required';
+    //$email = filter_var($formdata['username'], FILTER_VALIDATE_EMAIL);
+    //if ($email != $formdata['username']) {
+    //    $errors['username'] = "Valid email required required";
+    //}
+
+    if (empty($formdata['password'])) {
+        $errors['password'] = "Password required";
     }
-    
-    if(empty($errors)){
+    if (empty($errors)) {
+        // since none of the form fields were empty,
+        // store the form data in variables
         $username = $formdata['username'];
         $password = $formdata['password'];
-        
-        $encrypted_password = md5($formdata[COLUMN_USER_PASSWORD]);
-        
-        //create new user table for users
-        $connection = $connection::getConnection();
-        $userTable= new UserTable($connection);
-        $user = $userTable->getUserByUsername($username);
-        
-        if($user == null){
-            $errors[COLUMN_USER_USERNAME] = 'Password & Username do not match';
-        } else {
-            if ($encrypted_password !== $user->getPassword()) {
-                $errors[COLUMN_USER_PASSWORD] = "Password & Username do not match";
+
+        // create a UserTable object and use it to retrieve
+        // the users
+        $connection = connection::getInstance();
+        $userTable = new UserTable($connection);
+        $user = $userTable->getUserByUn($username);
+
+        // since password fields match, see if the username
+        // has already been registered - if it is then throw
+        // and exception
+        if ($user == null) {
+            $errors['username'] = "Username is not registered";
+        }
+        else {
+            if ($password !== $user->getPassword()) {
+                $errors['password'] = "Password is incorrect";
             }
         }
-        
-        if (!empty($errors)) {
-            throw new Exception("Credentials were incorrect, please try again.");
-        }
-        
-        $_SESSION['user'] = $user;
-        
-        
-        header('Location: landing.php');
     }
-    
-} catch (Exception $ex) {
-    $errorMessage =  $ex->getMessage();
+
+    if (!empty($errors)) {
+        throw new Exception("There were errors. Please fix them.");
+    }
+
+    // since the username is not aleady registered, cre
+    $_SESSION['user'] = $user;
+
+    header('Location: landing.php');
+}
+catch (Exception $ex) {
+    // if an exception occurs then extract the message
+    // from the exception and send the user the
+    // registration form
+    $errorMessage = $ex->getMessage();
     require 'login_form.php';
 }
-
-
-
+?>

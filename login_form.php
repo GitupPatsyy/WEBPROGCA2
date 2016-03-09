@@ -11,30 +11,37 @@ and open the template in the editor.
         <!--all styles and scripts will be contained in these php scripts-->
         <?php require 'utilities/styles.php'; ?>
         <?php require 'utilities/scripts.php'; ?>
-        
+
     </head>
     <body>
-        <div class="row">
-                <?php require 'utilities/header.php'; ?>
-                <?php require 'utilities/toolbar.php'; ?>
+        <div class="row header_style">
+            <?php require 'utilities/header.php'; ?>
+            <?php require 'utilities/toolbar.php'; ?>
         </div>
         <div class="container">
             <div class="row col-lg-offset-4 col-lg-6">
-                <!--opening form-->
+                <!--opening form-->        <br>
+                <hr>
+                <h4>Login</h4>
+                <hr>
+
                 <form  action="login.php" method="POST">
-                    <input type="text" name="username" value="<?php if (isset($formdata['username'])) echo $formdata['username']; ?>" />
-                    <span class="errors">
-                        <!--errors for username will come in here-->
-                    </span>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="username" value="<?php if (isset($formdata['username'])) echo $formdata['username']; ?>" />
+                        <span class="errors">
+                            <!--errors for username will come in here-->
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <input type="password"  class="form-control" name="password" value="<?php if (isset($formdata['password'])) echo $formdata['password']; ?>" />
+                        <span class="errors">
+                            <!--errors will output here-->
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit"  class="form-control" value="Login">
 
-                    <input type="password" name="password" value="<?php if (isset($formdata['password'])) echo $formdata['password']; ?>" />
-                    <span class="errors">
-                        <!--errors will output here-->
-                    </span>
-
-                    <input type="submit" value="Login">
-
-
+                    </div>
                 </form>
                 <!--closing form-->
                 <p><a href="register_form.php">Register Here</a></p>
