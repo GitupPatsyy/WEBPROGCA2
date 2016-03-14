@@ -1,4 +1,5 @@
 <?php
+
 require_once 'utilities/functions.php';
 require_once 'classes/User.php';
 require_once 'connection.php';
@@ -14,9 +15,9 @@ start_session();
 try {
     $formdata = array();
     $errors = array();
-    
 
-    
+
+
     $input_method = INPUT_POST;
 
     $formdata['username'] = filter_input($input_method, "username", FILTER_SANITIZE_STRING);
@@ -26,7 +27,6 @@ try {
 //echo '<pre>';
 //print_r($formdata);
 //echo '</pre>';
-
     // throw an exception if any of the form fields 
     // are empty
     if (empty($formdata['username'])) {
@@ -45,8 +45,7 @@ try {
     }
     // if the password fields do not match 
     // then throw an exception
-    if (!empty($formdata['password']) && !empty($formdata['confirmpassword']) 
-            && $formdata['password'] != $formdata['confirmpassword']) {
+    if (!empty($formdata['password']) && !empty($formdata['confirmpassword']) && $formdata['password'] != $formdata['confirmpassword']) {
         $errors['password'] = "Passwords must match";
     }
 
@@ -70,11 +69,11 @@ try {
             $errors['username'] = "Username already registered";
         }
     }
-    
+
     if (!empty($errors)) {
         throw new Exception("There were errors. Please fix them.");
     }
-    
+
     // since the username is not aleady registered, create
     // a new User object, add it to the database using the
     // UserTable object, and store it in the session array
@@ -83,7 +82,7 @@ try {
     $id = $userTable->insert($user);
     $user->setId($id);
     $_SESSION['user'] = $user;
-    
+
     // now the user is registered and logged in so redirect
     // them the their home page
     // Note the user is redirected to home.php rather than
@@ -93,8 +92,7 @@ try {
     // 
 //     require 'location.php';
     header('Location: landing.php');
-}
-catch (Exception $ex) {
+} catch (Exception $ex) {
     // if an exception occurs then extract the message
     // from the exception and send the user the
     // registration form
