@@ -49,8 +49,7 @@ try {
         // and exception
         if ($user == null) {
             $errors['username'] = "Username is not registered";
-        }
-        else {
+        } else {
             if ($password !== $user->getPassword()) {
                 $errors['password'] = "Password is incorrect";
             }
@@ -65,8 +64,7 @@ try {
     $_SESSION['user'] = $user;
 
     header('Location: landing.php');
-}
-catch (Exception $ex) {
+} catch (Exception $ex) {
     // if an exception occurs then extract the message
     // from the exception and send the user the
     // registration form

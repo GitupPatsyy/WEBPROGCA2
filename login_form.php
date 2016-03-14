@@ -37,12 +37,14 @@ and open the template in the editor.
                         </span>
                     </div>
                     <div class="form-group">
-                        <input type="submit"  class="form-control" value="Login">
+                        <input type="submit"  
+                               class="form-control btn btn-success" 
+                               value="Login">
 
                     </div>
                 </form>
                 <!--closing form-->
-                <p><a href="register_form.php">Register Here</a></p>
+                <p><a href="register_form.php" class="btn btn-info">Register Here</a></p>
             </div>
             <!--closing row-->
         </div>
