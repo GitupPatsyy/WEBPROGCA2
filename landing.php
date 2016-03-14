@@ -10,13 +10,57 @@
     </head>
     <body>
         <div class="container-fluid">
-                <?php require 'utilities/header.php'; ?>
-            <div class="row page-header home_content">
-                <h3 class="left-content">Welcome to our lovely internal system.</h3>
+            <?php require 'utilities/header.php'; ?>
+            <div class="row page-header">
+                <div class="section col-lg-3">
+                    <div class="border">
+                        <a href="viewallbus.php"><img src="img/tiles/1.jpg"  class="section_img" /></a>
+                    </div>
+                </div>
+                <div class="section col-lg-3">
+                    <div class="border">
+                        <img src="img/tiles/2.jpg"  class="section_img" />
+                    </div>
+                </div>
+                <div class="section col-lg-3">
+                    <div class="border">
+                        <img src="img/tiles/3.jpg"  class="section_img" />
+                    </div>
+                </div>
+                <div class="section col-lg-3">
+                    <div class="border">
+                        <img src="img/tiles/4.jpg"  class="section_img" />
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="section col-lg-3">
+                    <div class="border">
+                        <a href="viewallbus.php"><img src="img/tiles/5.jpg"  class="section_img" /></a>
+                    </div>
+                </div>
+                <div class="section col-lg-3">
+                    <div class="border">
+                        <img src="img/tiles/6.jpg"  class="section_img" />
+                    </div>
+                </div>
+                <div class="section col-lg-3">
+                    <div class="border">
+                        <img src="img/tiles/7.jpg"  class="section_img" />
+                    </div>
+                </div>
+                <div class="section col-lg-3">
+                    <div class="border">
+                        <img src="img/tiles/8.jpg"  class="section_img" />
+                    </div>
+                </div>
+
 
 
 
             </div>
+            
             <div class="row">
                 <?php require 'utilities/footer.php'; ?> 
             </div>
