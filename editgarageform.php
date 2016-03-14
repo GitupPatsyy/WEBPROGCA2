@@ -26,12 +26,11 @@ $row = $statement->fetch(PDO::FETCH_ASSOC);
 //} else {
 //    die("DIE BART DIE");
 //}
-
 //echo "<pre>";
 //        print_r($row);
 //        echo "</pre>";
 
-if (!isset($errors)){
+if (!isset($errors)) {
     $errors = array();
 }
 ?>
@@ -42,32 +41,28 @@ if (!isset($errors)){
     <head>
         <title>Edit GarageForm</title>
         <!--all styles and scripts will be contained in these php scripts-->
-<?php require 'utilities/styles.php'; ?>
-<?php require 'utilities/scripts.php'; ?>
+        <?php require 'utilities/styles.php'; ?>
+        <?php require 'utilities/scripts.php'; ?>
 
 
     </head>
 
     <body>
         <!--All content in container-->
-        <div class="row">
-            <!--All data will be displayed from database-->
-            <!--    Opening databse area -->
-
-<?php require 'utilities/header.php' ?>
-<?php require 'utilities/toolbar.php' ?>
-            <hr>
-            <h4 style="text-align: center">Garage Add</h4>
+        <div class="container-fluid">
+                <?php require 'utilities/header.php'; ?>
             <hr>
             <!--        Opening form area           -->
 
-            <form action="editGarage.php"  id="garageUpdate" name="garageUpdate" method="POST">
+            <form action="editGarage.php"  id="garageUpdate" name="garageUpdate" method="POST" class="row page-header home_content">
                 <!--            Data will go inside of here -->
-                <table class="table-responsive">
+                <table>
+                    
+            <h4 class="center-content">Edit Garage</h4>
                     <input type="hidden" name="id" value="<?php
-echo $row['garageID'];
-;
-?>" />
+                    echo $row['garageID'];
+                    ;
+                    ?>" />
                     <tr>
                         <td>Garage Address</td>
                     </tr>
@@ -160,6 +155,8 @@ echo $row['garageID'];
                 </table>
                 <!--            Closing form area           -->
             </form>
+
+        <?php  require 'utilities/footer.php'; ?> 
 
             <!--Closing database area-->
         </div>
