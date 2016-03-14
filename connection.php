@@ -6,13 +6,11 @@
  * Date: 24/11/2015
  * Time: 12:55 PM
  */
-class Connection
-{
+class Connection {
 
     private static $connection = NULL;
 
-    public static function getInstance()
-    {
+    public static function getInstance() {
         if (Connection::$connection === NULL) {
             // connect to the database local
             $host = "localhost";
@@ -35,4 +33,5 @@ class Connection
 
         return Connection::$connection;
     }
+
 }
