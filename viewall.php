@@ -9,6 +9,13 @@ require_once 'garage.php';
 require_once 'connection.php';
 require_once 'garageTableGateway.php';
 
+//start_session();
+//
+//if (!is_logged_in()){
+//    header("Location: login_form.php");
+//}
+//
+//$user = $_SESSION['user'];
 
 $connection = Connection::getInstance();
 $gateway = new garageTableGateway($connection);
@@ -29,51 +36,13 @@ $statement = $gateway->getGarages();
     </head>
     <body>
         <div class="container-fluid">
-                <?php require 'utilities/header.php'; ?>
-        <br>
-        <div class="row page-header home_content">
-            <hr>
-            <h4>View All Garages</h4>
-            <hr>
-            <table class="col-lg-push-2 col-lg-8 col-lg-pull-2">
-                <div class="row col-lg-push-2 col-lg-8 col-lg-pull-2">
-                    <a href="addgarageform.php"> <img src="icons/add.png" width="40" height="40"  style="margin: 3px;" ></a>
-                </div>
-                <thead>
-                    <tr>
-                        <th>Address</th>
-                        <th>Phone No.</th>
-                        <th>Manager Name</th>
-                        <th>Garage Name</th>
-                        <th>Garage ID</th>
-                        <th>Actions</th>
-
-                    </tr>
-                    <?php
-                    $row = $statement->fetch(PDO::FETCH_ASSOC);
-                    while ($row) {
-
-                        echo '<tr class="info">';
-                        echo '<td>' . $row['garageAddress'] . '</td>';
-                        echo '<td>' . $row['phoneNo'] . '</td>';
-                        echo '<td>' . $row['managerName'] . '</td>';
-                        echo '<td>' . $row['nameofGarage'] . '</td>';
-                        echo '<td>' . $row['garageID'] . '</td>';
-                        echo '<td>'
-                        . '<a href="viewGarage.php?id=' . $row['garageID'] . '"><img src="icons/view.png"  height="40px" width="40px"  style="margin: 3px;"  /></a>'
-                        . '<a href="editgarageform.php?id=' . $row['garageID'] . '"><img src="icons/edit.png" height="40px" width="40px"   style="margin: 3px;" /></a>'
-                        . '<a class="deletebtn" href="deletegarage.php?id=' . $row['garageID'] . '"><img class="" src="icons/delete.png"  height="40px" width="40px" style="margin: 3px;" /></a>';
-                        echo '</tr>';
-
-                        $row = $statement->fetch(PDO::FETCH_ASSOC);
-                    }
-                    ?>
-            
-            </table>
-
-
+            <div class="row table-spacing">
+                <?php require 'utilities/viewAllGaragesHead.php'; ?>
+            </div>
+            <br>
         </div>
-        <?php require 'utilities/footer.php'; ?> 
+        <div class="row">
+            <?php require 'utilities/footer.php'; ?> 
         </div>
     </body>
 
