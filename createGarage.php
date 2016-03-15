@@ -38,7 +38,7 @@ if (empty($errors)) {
     $manager_email_valid = filter_var($manager_email, FILTER_VALIDATE_EMAIL);
 
     $garage = new Garage($garage_address, $phone_no, $manager_name, $garage_name, $garage_id, $service_date, $manager_email, $garage_url, $over_night);
-    
+
 
 
     $connection = Connection::getInstance();
@@ -50,7 +50,6 @@ if (empty($errors)) {
 //Redirects the user to the specific page
     header('Location: viewall.php');
     exit();
-    
 } else {
     require "addgarageform.php";
 }
