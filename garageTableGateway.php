@@ -58,8 +58,8 @@ class garageTableGateway {
             "garageURL" => $garage->getGarageURL(),
             "overNight" => $garage->getOvernight()
         );
-        
-                        echo "<pre>";
+
+        echo "<pre>";
         print_r($parameters);
         print_r($garage);
         echo "</pre>";
@@ -131,6 +131,26 @@ class garageTableGateway {
         $id = $this->connection->lastInsertId();
 
         return $id;
+    }
+
+//Function to get the garage using only the bus id
+    public function getGarageByGarageId($garageID) {
+        $sqlQuery = "SELECT g.* FROM Web_Garage g LEFT JOIN Bus b ON g.garageID = b.garageID WHERE b.busID = :id
+";
+        
+
+        $statement = $this->connection->prepare($sqlQuery);
+
+        $params = array(
+            "id" => $garageID
+        );
+        $status = $statement->execute($params);
+
+        if (!$status) {
+            die("Could not retrieve garages");
+        }
+
+        return $statement;
     }
 
 }

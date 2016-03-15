@@ -3,8 +3,8 @@
 /**
  * Created by IntelliJ IDEA.
  * User: rorypb
- 
- **/
+
+ * */
 class busTableGateway {
 
     private $connection;
@@ -127,5 +127,24 @@ class busTableGateway {
         return $id;
     }
 
-}
+//Function to get the bus using only the garage id
+    public function getBusByGarageId($garageID) {
+        $sqlQuery = "SELECT b.* "
+                . "FROM Bus b "
+                . "WHERE b.garageID = :garageID";
 
+        $statement = $this->connection->prepare($sqlQuery);
+
+        $params = array(
+            "garageID" => $garageID
+        );
+        $status = $statement->execute($params);
+
+        if (!$status) {
+            die("Could not retrieve buses");
+        }
+
+        return $statement;
+    }
+
+}
