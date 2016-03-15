@@ -50,15 +50,17 @@ if (!isset($errors)) {
     <body>
         <!--All content in container-->
         <div class="container-fluid">
-                <?php require 'utilities/header.php'; ?>
+            <div class="row">
+            <?php require 'utilities/header.php'; ?>
+            </div>
             <hr>
             <!--        Opening form area           -->
 
             <form action="editGarage.php"  id="garageUpdate" name="garageUpdate" method="POST" class="row page-header home_content">
                 <!--            Data will go inside of here -->
                 <table>
-                    
-            <h4 class="center-content">Edit Garage</h4>
+
+                    <h4 class="center-content">Edit Garage</h4>
                     <input type="hidden" name="id" value="<?php
                     echo $row['garageID'];
                     ;
@@ -156,7 +158,7 @@ if (!isset($errors)) {
                 <!--            Closing form area           -->
             </form>
 
-        <?php  require 'utilities/footer.php'; ?> 
+            <?php require 'utilities/footer.php'; ?> 
 
             <!--Closing database area-->
         </div>

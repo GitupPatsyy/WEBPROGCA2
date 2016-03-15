@@ -1,4 +1,12 @@
 <?php
+require_once 'garageTableGateway.php';
+require_once 'connection.php';
+require_once 'busTableGateway.php';
+
+$connection = Connection::getInstance();
+$gateway = new garageTableGateway($connection);
+
+$garages = $gateway->getGarages();
 
 /**
  * Created by IntelliJ IDEA.
@@ -39,7 +47,9 @@ if (!isset($formdata)) {
 
     <body>
         <div class="container-fluid">
+            <div class="row">
             <?php require 'utilities/header.php'; ?>
+            </div>
             <!--All content in container-->
             <!--All data will be displayed from database-->
 
@@ -134,8 +144,12 @@ if (!isset($formdata)) {
                     </div>
                     <div class="form-group">
                         Garage Id
-                        <input type="text" id="gID" name="gID" class="form-control" value="<?php setValue($formdata, 'gID') ?>"/><span
-                            class="errors" id="idError">
+                        <select  id="gID" name="gID" class="form-control" value="<?php setValue($formdata, 'gID') ?>"/>
+                        <?php
+                        foreach ($garages as $garage) {
+                            echo '<option value="' . $garage['garageID'] . '">' . $garage['nameofGarage'] . '</option>';
+                        }
+                        ?></select><span class="errors" id="idError">
                             <!--          URL Error will go here         -->
                             <?php
                             if (isset($errors['gID']))

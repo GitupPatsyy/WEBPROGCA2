@@ -15,8 +15,10 @@ and open the template in the editor.
     </head>
     <body>
         <div class="container-fluid">
+            <!--gets rid of the border radiuse around the jumbotron-->
+            <div class="row">
                 <?php require 'utilities/header.php'; ?>
-
+            </div>
             <div class="row page-header home_content">
                 <!--opening form-->        <br>
                 <hr>

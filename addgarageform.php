@@ -41,20 +41,20 @@ if (!isset($formdata)) {
 
     <body>
         <div class="container-fluid">
-                <?php require 'utilities/header.php'; ?>
-        <!--All content in container-->
+            <?php require 'utilities/header.php'; ?>
+            <!--All content in container-->
             <!--All data will be displayed from database-->
 
             <!--    Opening databse area -->
             <div class="row page-header home_content ">
-                            <br>
-            <hr>
-            <h4 class="center-content">Garage Add</h4>
-            <hr>
-            <!--        Opening form area           -->
-            <form action="createGarage.php" id="databaseAdd" name="databaseAdd"
-                  method="POST" class="form-horizontal col-lg-push-2 col-lg-8 col-lg-pull-2" >
-                <!--            Data will go inside of here -->
+                <br>
+                <hr>
+                <h4 class="center-content">Garage Add</h4>
+                <hr>
+                <!--        Opening form area           -->
+                <form action="createGarage.php" id="databaseAdd" name="databaseAdd"
+                      method="POST" class="form-horizontal col-lg-push-2 col-lg-8 col-lg-pull-2" >
+                    <!--            Data will go inside of here -->
                     <div class="form-group">
                         Garage Address
                         <input type="text" id="garageAdd" name="garageAdd" class="form-control"
@@ -161,12 +161,12 @@ if (!isset($formdata)) {
                     </div>
                     <!--        Closing data area       -->
 
-                <!--            Closing form area           -->
-            </form>
+                    <!--            Closing form area           -->
+                </form>
             </div>
             <!--Closing container-->
         </div>
-        </div><!--Closing container-->
-        <?php require 'utilities/footer.php'; ?> 
-    </body>
+    </div><!--Closing container-->
+    <?php require 'utilities/footer.php'; ?> 
+</body>
 </html>
