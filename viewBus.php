@@ -2,9 +2,11 @@
 /**
  * Created by IntelliJ IDEA.
  * User: rorypb
-*/
+ */
 require_once 'connection.php';
+require_once 'garageTableGateway.php';
 require_once 'busTableGateway.php';
+
 
 if (!isset($_GET['id'])) {
     die("Halt");
@@ -13,14 +15,17 @@ if (!isset($_GET['id'])) {
 $id = $_GET['id'];
 
 $connection = Connection::getInstance();
-$gateway = new busTableGateway($connection);
+$garageGateway = new garageTableGateway($connection);
+$busGateway = new busTableGateway($connection);
 
-$statement = $gateway->getBusByID($id);
+$garages = $garageGateway->getGarageByGarageId($id);
+$buses = $busGateway->getBusByID($id);
 
-$row = $statement->fetch(PDO::FETCH_ASSOC);
-if (!$row) {
-    die("Unable to get Bus By ID");
-}
+
+//$row = $statement->fetch(PDO::FETCH_ASSOC);
+//if (!$row) {
+//    die("Unable to get Bus By ID");
+//}
 ?>
 
 
@@ -36,33 +41,100 @@ if (!$row) {
     </head>
     <body>
         <div class="container-fluid">
-                <?php require 'utilities/header.php'; ?>
-            <div class="row page-header home_content">
-                <table class="col-lg-push-1 col-lg-10 col-lg-pull-1">
-                    <thead>
-                        <tr>
-                            <th>Reg Num</th>
-                            <th>Bus Make</th>
-                            <th>Bus Model</th>
-                            <th>Engine Size</th>
-                            <th>Date Bought</th>
-                            <th>Next Service</th>
-                            <th>Garage ID</th>
-                        </tr>
-                        <?php
-                        echo '<tr>';
-                        echo '<td>' . $row['regNum'] . '</td>';
-                        echo '<td>' . $row['busMake'] . '</td>';
-                        echo '<td>' . $row['busModel'] . '</td>';
-                        echo '<td>' . $row['engineSize'] . '</td>';
-                        echo '<td>' . $row['dateBought'] . '</td>';
-                        echo '<td>' . $row['dateNextService'] . '</td>';
-                        echo '<td>' . $row['garageID'] . '</td>';
-                        echo '</tr>';
-                        ?>
-                </table>
+            <div class="row">
+            <?php require 'utilities/header.php'; ?>
             </div>
-        </div>
-        <?php require 'utilities/footer.php'; ?> 
+            <div class="row page-header home_content">
+                <h2>View Bus Details</h2>
+                <table class="table rpb-table">
+                    <tbody>
+                        <?php
+                        $bus = $buses->fetch(PDO::FETCH_ASSOC);
+                        
+                        echo '<tr>';
+                        echo '<th>Bus ID</th>'
+                        . '<td>' . $bus['busID'] . '</td>';
+                        echo '</tr>';
+                        echo '<tr>';
+                        echo '<th>Registration Number</th>'
+                        . '<td>' . $bus['regNum'] . '</td>';
+                        echo '</tr>';
+                        echo '<tr>';
+                        echo '<th>Bus Make</th>'
+                        . '<td>' . $bus['busMake'] . '</td>';
+                        echo '</tr>';
+                        echo '<th>Bus Model</th>'
+                        . '<td>' . $bus['busModel'] . '</td>';
+                        echo '</tr>';
+                        echo '<th>Engine Size</th>'
+                        . '<td>' . $bus['engineSize'] . '</td>';
+                        echo '</tr>';
+                        echo '<th>Date Purchase</th>'
+                        . '<td>' . $bus['dateBought'] . '</td>';
+                        echo '</tr>';
+                        echo '</tr>';
+                        echo '<th>Date Next Service</th>'
+                        . '<td>' . $bus['dateNextService'] . '</td>';
+                        echo '</tr>';
+                        echo '<th>Garage ID</th>'
+                        . '<td>' . $bus['garageID'] . '</td>';
+                        echo '</tr>';
+                        echo '<td>'
+                        . '<a href="editbusform.php?id=' . $bus['busID'] . '"><img src="icons/edit.png" height="40px" width="40px"   style="margin: 3px;" /></a>'
+                        . '<a class="deletebtn" href="deletebus.php?id=' . $bus['busID'] . '"><img class="" src="icons/delete.png"  height="40px" width="40px" style="margin: 3px;" /></a>'
+                        ?>
+                    </tbody>
+                </table>
+                <div class="">
+                    <h3>Bus Assigned to Selected Garage = <?php echo $bus['busID']; ?></h3>
+                    <?php if ($garages->rowCount() !== 0) { ?>
+                        <table class="table table-height rpb-table">
+                            <thead>
+                                <tr>
+                                    <th>Garage Address</th>
+                                    <th>Phone Number</th>
+                                    <th>Manager Name</th>
+                                    <th>Garage Name</th>
+                                    <th>Garage Id</th>
+                                    <th>Service Date</th>
+                                    <th>Manager Email</th>
+                                    <th>Garage URL</th>
+                                    <th>Over Night</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                               $row = $garages->fetch(PDO::FETCH_ASSOC);
+                                while ($row) {
+                                    echo '<tr>';
+                                    echo '<td>' . $row['garageAddress'] . '</td>';
+                                    echo '<td>' . $row['phoneNo'] . '</td>';
+                                    echo '<td>' . $row['managerName'] . '</td>';
+                                    echo '<td>' . $row['nameofGarage'] . '</td>';
+                                    echo '<td>' . $row['garageID'] . '</td>';
+                                    echo '<td>' . $row['dateService'] . '</td>';
+                                    echo '<td>' . $row['managerEmail'] . '</td>';
+                                    echo '<td>' . $row['garageURL'] . '</td>';
+                                    echo '<td>' . $row['overNight'] . '</td>';
+                                    echo '<td>'
+                                    . '<a href="viewGarage.php?id=' . $row['garageID'] . '"><img src="icons/view.png"  height="30px" width="30px"  style="margin: 3px;"  /></a> '
+                                    . '<a href="editgarageform.php?id=' . $row['garageID'] . '"><img src="icons/edit.png" height="30px" width="30px"   style="margin: 3px;" /></a>'
+                                    . '<a class="deleteGarage" href="deletegarage.php?id=' . $row['garageID'] . '"><img class="" src="icons/delete.png"  height="30px" width="30px" style="margin: 3px;" /></a> '
+                                    . '</td>';
+                                    echo '</tr>';
+
+                                     $row = $garages->fetch(PDO::FETCH_ASSOC);
+                                }
+                    }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        
+            <?php require 'utilities/footer.php'; ?> 
     </body>
 </html>
