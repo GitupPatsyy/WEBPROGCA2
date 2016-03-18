@@ -8,46 +8,46 @@
  */
 class garageTableGateway {
 
-    private $connection;
+    private $connection; //private connection fro the table
 
-    public function __construct($conn) {
-        $this->connection = $conn;
+    public function __construct($conn) {//construct the connection
+        $this->connection = $conn; //using the private connection
     }
 
-    public function getGarages() {
+    public function getGarages() { //sql query to select all garages 
         $sqlQuery = "SELECT * FROM Web_Garage";
 
-        $statement = $this->connection->prepare($sqlQuery);
-        $exec = $statement->execute();
+        $statement = $this->connection->prepare($sqlQuery); //prepeare the sql 
+        $exec = $statement->execute(); //execute it
 
-        if (!$exec) {
+        if (!$exec) { // if there are none 
             die("Could not get Garages");
         }
 
-        return $statement;
+        return $statement; //return all the garages
     }
 
-    public function getGarageByID($garageID) {
+    public function getGarageByID($garageID) { //get garage by an id
         $sqlQuery = "SELECT * FROM Web_Garage WHERE garageID = :garageID";
 
-        $statement = $this->connection->prepare($sqlQuery);
-        $parameters = array("garageID" => $garageID);
+        $statement = $this->connection->prepare($sqlQuery); //prepare
+        $parameters = array("garageID" => $garageID); //params are the garage id
 
-        $exec = $statement->execute($parameters);
+        $exec = $statement->execute($parameters); //execute the statement
 
         if (!$exec) {
             die("Could not get Garages");
         }
 
-        return $statement;
+        return $statement; //return the garagebyid
     }
 
-    public function insertGarage($garage) {
+    public function insertGarage($garage) { //insert into te garage table 
         $sqlQuery = "INSERT INTO Web_Garage(garageAddress, phoneNo, managerName, nameofGarage, garageID, dateService, managerEmail, garageURL, overNight)" .
-                "VALUES (:garageAddress, :phoneNo, :managerName, :nameofGarage, :garageID, :dateService, :managerEmail, :garageURL, :overNight)";
+                "VALUES (:garageAddress, :phoneNo, :managerName, :nameofGarage, :garageID, :dateService, :managerEmail, :garageURL, :overNight)"; //values
 
-        $statement = $this->connection->prepare($sqlQuery);
-        $parameters = array(
+        $statement = $this->connection->prepare($sqlQuery); //preapre the statemnt
+        $parameters = array(//all the params to go make the garage 
             "garageAddress" => $garage->getAddress(),
             "phoneNo" => $garage->getPhone(),
             "managerName" => $garage->getManagerName(),
@@ -59,12 +59,12 @@ class garageTableGateway {
             "overNight" => $garage->getOvernight()
         );
 
-        echo "<pre>";
-        print_r($parameters);
-        print_r($garage);
-        echo "</pre>";
+//        echo "<pre>";
+//        print_r($parameters);
+//        print_r($garage);
+//        echo "</pre>";
 
-        $exec = $statement->execute($parameters);
+        $exec = $statement->execute($parameters); //execute the statememt
 
         if (!$exec) {
             die("Could not insert garage");
@@ -76,23 +76,22 @@ class garageTableGateway {
         return $id;
     }
 
-    public function removeGarage($id) {
-        $sqlQuery = "DELETE FROM Web_Garage WHERE garageID= :garageID";
+    public function removeGarage($id) { //remove a garae
+        $sqlQuery = "DELETE FROM Web_Garage WHERE garageID= :garageID"; //sql 
 
-        $statement = $this->connection->prepare($sqlQuery);
+        $statement = $this->connection->prepare($sqlQuery); //prepare the staemtn
         $parameters = array(
             "garageID" => $id
         );
 
-        $status = $statement->execute($parameters);
+        $status = $statement->execute($parameters); //execute th estatemt
 
         if (!$status) {
             die("Could not delete the garage");
         }
     }
 
-    public function updateGarage($g) {
-
+    public function updateGarage($g) { //update garage unction works the same as the bus
         $sqlQuery = "UPDATE Web_Garage SET " .
                 "garageAddress = :address, " .
                 "phoneNo = :phone, " .
@@ -134,23 +133,23 @@ class garageTableGateway {
     }
 
 //Function to get the garage using only the bus id
-    public function getGarageByGarageId($garageID) {
+    public function getGarageByGarageId($garageID) { //eft on the garage tbale to the bus tabpe using the id
         $sqlQuery = "SELECT g.* FROM Web_Garage g LEFT JOIN Bus b ON g.garageID = b.garageID WHERE b.busID = :id
 ";
-        
 
-        $statement = $this->connection->prepare($sqlQuery);
+
+        $statement = $this->connection->prepare($sqlQuery); //prepeare the sql
 
         $params = array(
             "id" => $garageID
         );
-        $status = $statement->execute($params);
+        $status = $statement->execute($params); //execute the sql
 
         if (!$status) {
             die("Could not retrieve garages");
         }
 
-        return $statement;
+        return $statement; //return the garage by the id
     }
 
 }

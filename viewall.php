@@ -5,10 +5,9 @@
  * Date: 01/12/2015
  * Time: 12:17 PM
  */
-require_once 'garage.php';
-require_once 'connection.php';
-require_once 'garageTableGateway.php';
-
+require_once 'garage.php'; //garges 
+require_once 'connection.php'; //coneection to db
+require_once 'garageTableGateway.php'; //connect to the garage tabl
 //start_session();
 //
 //if (!is_logged_in()){
@@ -17,10 +16,10 @@ require_once 'garageTableGateway.php';
 //
 //$user = $_SESSION['user'];
 
-$connection = Connection::getInstance();
-$gateway = new garageTableGateway($connection);
+$connection = Connection::getInstance(); //connection to db 
+$gateway = new garageTableGateway($connection); //use the conenction to go to the garagetable
 
-$statement = $gateway->getGarages();
+$statement = $gateway->getGarages(); //method to select all garages
 //
 //echo "Connected to the database";
 ?>
@@ -37,6 +36,7 @@ $statement = $gateway->getGarages();
     <body>
         <div class="container-fluid">
             <div class="row table-spacing">
+
                 <?php require 'utilities/viewAllGaragesHead.php'; ?>
             </div>
             <br>

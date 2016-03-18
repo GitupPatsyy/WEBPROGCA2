@@ -3,25 +3,24 @@
  * Created by IntelliJ IDEA.
  * User: rorypb
  */
-require_once 'connection.php';
-require_once 'garageTableGateway.php';
-require_once 'busTableGateway.php';
+require_once 'connection.php'; //for connection to db
+require_once 'garageTableGateway.php'; //connecting to garage tbal
+require_once 'busTableGateway.php'; //connection to bus tbale 
 
 
-if (!isset($_GET['id'])) {
-    die("Halt");
+if (!isset($_GET['id'])) { //oif the id is not one from the db
+    die("Halt"); //die
 }
 
-$id = $_GET['id'];
+$id = $_GET['id']; //get the id from the databae
 
-$connection = Connection::getInstance();
-$garageGateway = new garageTableGateway($connection);
-$busGateway = new busTableGateway($connection);
+$connection = Connection::getInstance(); //connect to the db
+$garageGateway = new garageTableGateway($connection); //connect to the garage table
+$busGateway = new busTableGateway($connection); //connect to the bus table
 
-$garages = $garageGateway->getGarageByGarageId($id);
-$buses = $busGateway->getBusByID($id);
-
-
+$garages = $garageGateway->getGarageByGarageId($id); //garage table get garageby id
+$buses = $busGateway->getBusByID($id); //bus table get bus by id
+//used in conjunction to view the garage that hioues that bus
 //$row = $statement->fetch(PDO::FETCH_ASSOC);
 //if (!$row) {
 //    die("Unable to get Bus By ID");
@@ -42,7 +41,7 @@ $buses = $busGateway->getBusByID($id);
     <body>
         <div class="container-fluid">
             <div class="row">
-            <?php require 'utilities/header.php'; ?>
+                <?php require 'utilities/header.php'; ?>
             </div>
             <div class="row page-header home_content">
                 <h2>View Bus Details</h2>
@@ -50,7 +49,7 @@ $buses = $busGateway->getBusByID($id);
                     <tbody>
                         <?php
                         $bus = $buses->fetch(PDO::FETCH_ASSOC);
-                        
+
                         echo '<tr>';
                         echo '<th>Bus ID</th>'
                         . '<td>' . $bus['busID'] . '</td>';
@@ -105,7 +104,7 @@ $buses = $busGateway->getBusByID($id);
                             </thead>
                             <tbody>
                                 <?php
-                               $row = $garages->fetch(PDO::FETCH_ASSOC);
+                                $row = $garages->fetch(PDO::FETCH_ASSOC);
                                 while ($row) {
                                     echo '<tr>';
                                     echo '<td>' . $row['garageAddress'] . '</td>';
@@ -124,17 +123,17 @@ $buses = $busGateway->getBusByID($id);
                                     . '</td>';
                                     echo '</tr>';
 
-                                     $row = $garages->fetch(PDO::FETCH_ASSOC);
+                                    $row = $garages->fetch(PDO::FETCH_ASSOC);
                                 }
-                    }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
-
+                            }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
+
             </div>
-        
-            <?php require 'utilities/footer.php'; ?> 
+        </div>
+
+        <?php require 'utilities/footer.php'; ?> 
     </body>
 </html>

@@ -29,12 +29,20 @@ and open the template in the editor.
                     <div class="form-group">
                         <input type="text" class="form-control" name="username" value="<?php if (isset($formdata['username'])) echo $formdata['username']; ?>" />
                         <span class="errors">
+                            <?php
+                            if (isset($errors['username']))
+                                echo $errors['username'];
+                            ?>
                             <!--errors for username will come in here-->
                         </span>
                     </div>
                     <div class="form-group">
                         <input type="password"  class="form-control" name="password" value="<?php if (isset($formdata['password'])) echo $formdata['password']; ?>" />
                         <span class="errors">
+                            <?php
+                            if (isset($errors['password']))
+                                echo $errors['password'];
+                            ?>
                             <!--errors will output here-->
                         </span>
                     </div>

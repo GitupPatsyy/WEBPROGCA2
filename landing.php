@@ -10,8 +10,10 @@
     </head>
     <body>
         <div class="container-fluid">
-            <?php require 'utilities/header.php'; ?>
-            <div class="row page-header">
+            <div class="row">
+                <?php require 'utilities/header.php'; ?>
+            </div>
+            <div class="row page-header img-tiles col-lg-12">
                 <div class="section col-lg-3">
                     <div class="border">
                         <a href="viewallbus.php"><img src="img/tiles/1.jpg"  class="section_img" /></a>
@@ -32,9 +34,8 @@
                         <img src="img/tiles/4.jpg"  class="section_img" />
                     </div>
                 </div>
-            </div>
-            
-            <div class="row">
+
+
                 <div class="section col-lg-3">
                     <div class="border">
                         <a href="viewallbus.php"><img src="img/tiles/5.jpg"  class="section_img" /></a>
@@ -55,16 +56,15 @@
                         <img src="img/tiles/8.jpg"  class="section_img" />
                     </div>
                 </div>
-
-
-
-
             </div>
-            
+
+
+
             <div class="row">
                 <?php require 'utilities/footer.php'; ?> 
             </div>
         </div>
+
 
     </body>
 

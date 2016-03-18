@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <!--gets rid of the border radius from the jumbtron-->
             <div class="row">
-            <?php require 'utilities/header.php'; ?>
+                <?php require 'utilities/header.php'; ?>
             </div>
             <?php
             if (isset($errorMessage))

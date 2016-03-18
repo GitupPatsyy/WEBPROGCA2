@@ -5,10 +5,9 @@
  * Date: 01/12/2015
  * Time: 12:17 PM
  */
-require_once 'bus.php';
-require_once 'connection.php';
-require_once 'busTableGateway.php';
-
+require_once 'bus.php'; //bus class required 
+require_once 'connection.php'; //connect to db
+require_once 'busTableGateway.php'; //for connection to bus tabkl
 //start_session();
 //
 //if (!is_logged_in()){
@@ -17,10 +16,10 @@ require_once 'busTableGateway.php';
 //
 //$user = $_SESSION['user'];
 
-$connection = Connection::getInstance();
-$gateway = new busTableGateway($connection);
+$connection = Connection::getInstance(); //connect to db
+$gateway = new busTableGateway($connection); //connect ot the bus table using that connection
 
-$statement = $gateway->getBuses();
+$statement = $gateway->getBuses(); //select all buses from the bus table
 //
 //echo "Connected to the database";
 ?>

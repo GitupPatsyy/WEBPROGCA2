@@ -1,16 +1,16 @@
 <?php
-require_once 'garage.php';
-require_once 'connection.php';
-require_once 'garageTableGateway.php';
+require_once 'garage.php'; //garage class
+require_once 'connection.php'; //for connction to db
+require_once 'garageTableGateway.php'; //conneciton for table
 
-if (!isset($_GET['id'])) {
-    die("illegealsdnhajiduyvshj request");
+if (!isset($_GET['id'])) { //if the id is not one from the form/database
+    die("illegealsdnhajiduyvshj request"); //die and erro
 }
-$id = $_GET['id'];
-$connection = Connection::getInstance();
-$gateway = new garageTableGateway($connection);
+$id = $_GET['id']; //set the id from the form/database
+$connection = Connection::getInstance(); //get an instance of the connection
+$gateway = new garageTableGateway($connection); //connect to the garage table
 
-$statement = $gateway->getGarageByID($id);
+$statement = $gateway->getGarageByID($id); //get garage by id method
 
 $row = $statement->fetch(PDO::FETCH_ASSOC);
 //if (!$row) {
@@ -30,8 +30,8 @@ $row = $statement->fetch(PDO::FETCH_ASSOC);
 //        print_r($row);
 //        echo "</pre>";
 
-if (!isset($errors)) {
-    $errors = array();
+if (!isset($errors)) { //if the errors array is not set then
+    $errors = array(); //errors = to an arry
 }
 ?>
 
@@ -51,7 +51,7 @@ if (!isset($errors)) {
         <!--All content in container-->
         <div class="container-fluid">
             <div class="row">
-            <?php require 'utilities/header.php'; ?>
+                <?php require 'utilities/header.php'; ?>
             </div>
             <hr>
             <!--        Opening form area           -->

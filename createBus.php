@@ -4,22 +4,21 @@
  * Created by IntelliJ IDEA.
  * User: rorypb
  */
-require_once 'bus.php';
-require_once 'connection.php';
-require_once 'busTableGateway.php';
-require_once 'bformprocess.php';
+require_once 'bus.php'; //require bus class 
+require_once 'connection.php'; //require connection
+require_once 'busTableGateway.php'; //require bustablegateway
+require_once 'bformprocess.php'; //require the form process for validation
 
 
-validate($formdata, $errors);
+validate($formdata, $errors); //function to validate the formdata
 //
 //    echo '<pre>';
 //    print_r($errors);
 //    print_r($formdata);
 //    echo "</pre>";
 
-if (empty($errors)) {
-
-
+if (empty($errors)) { // if the errors arry is empty create the bus objct
+    //set varibles to formdata of the respective fields
     $reg_num = $formdata["regNum"];
     $bus_make = $formdata["make"];
     $bus_model = $formdata["model"];
@@ -33,12 +32,10 @@ if (empty($errors)) {
 
 
 
-    $connection = Connection::getInstance();
-    $gateway = new busTableGateway($connection);
+    $connection = Connection::getInstance(); //get an instance of the connection
+    $gateway = new busTableGateway($connection); //connect to the bus table gateway using the conneciton 
 
-    $id = $gateway->insertBus($bus);
-
-
+    $id = $gateway->insertBus($bus); //insert the bus object
 //Redirects the user to the specific page
     header('Location: viewallbus.php');
     exit();

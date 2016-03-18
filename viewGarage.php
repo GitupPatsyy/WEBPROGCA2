@@ -5,22 +5,22 @@
  * Date: 01/12/2015
  * Time: 12:17 PM
  */
-require_once 'connection.php';
-require_once 'garageTableGateway.php';
-require_once 'busTableGateway.php';
-
+require_once 'connection.php'; //connect to db
+require_once 'garageTableGateway.php'; //connect to garagetable 
+require_once 'busTableGateway.php'; //connect to bus tbale
 //if (!isset($_GET['id'])) {
 //    die("Halt");
 //}
 
-$id = $_GET['id'];
+$id = $_GET['id']; //id has to be valid
 
-$connection = Connection::getInstance();
-$garageGateway = new garageTableGateway($connection);
-$busGateway = new busTableGateway($connection);
+$connection = Connection::getInstance(); //conenct to the db
+$garageGateway = new garageTableGateway($connection); //for conenction to garage table 
+$busGateway = new busTableGateway($connection); //for connection to bus table 
 
-$garages = $garageGateway->getGarageById($id);
-$bus = $busGateway->getBusByGarageId($id);
+$garages = $garageGateway->getGarageById($id); //get garagebyid form garages
+$bus = $busGateway->getBusByGarageId($id); //get busbygarageid from bus
+//the garage selected will show all buses that is stored by that garage
 //$row = $statement->fetch(PDO::FETCH_ASSOC);
 //if (!$row) {
 //    die("Unable to get Garage By ID");

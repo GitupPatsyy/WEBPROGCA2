@@ -8,6 +8,7 @@
  */
 class Garage {
 
+//private class variables
     private $address;
     private $phone;
     private $manager_name;
@@ -18,6 +19,7 @@ class Garage {
     private $garage_url;
     private $overnight;
 
+    //Constructor 
     public function __construct($a, $p, $mn, $gn, $gid, $sd, $me, $gurl, $on) {
         $this->address = $a;
         $this->phone = $p;
@@ -30,6 +32,7 @@ class Garage {
         $this->overnight = $on;
     }
 
+//get mthods
     public function getAddress() {
         return $this->address;
     }

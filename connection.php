@@ -8,11 +8,11 @@
  */
 class Connection {
 
-    private static $connection = NULL;
+    private static $connection = NULL; //initialise the connection to null
 
-    public static function getInstance() {
-        if (Connection::$connection === NULL) {
-            // connect to the database local
+    public static function getInstance() { //get an instance of the connection
+        if (Connection::$connection === NULL) { //if the connection is null
+            // connect to the database local using the credentials
             $host = "localhost";
             $database = "CA1-TourBusMassacre";
             $username = "rorypb";
@@ -24,14 +24,14 @@ class Connection {
 //            $username = "N00143233";
 //            $password = "N00143233";
 
-            $dsn = "mysql:host=" . $host . ";dbname=" . $database;
-            Connection::$connection = new PDO($dsn, $username, $password);
-            if (!Connection::$connection) {
-                die("Could not connect to database");
+            $dsn = "mysql:host=" . $host . ";dbname=" . $database; //url for connection
+            Connection::$connection = new PDO($dsn, $username, $password); //Connection is made with the variables above
+            if (!Connection::$connection) { //if there is no connection 
+                die("Could not connect to database"); //die
             }
         }
 
-        return Connection::$connection;
+        return Connection::$connection; //return the connection from the credentials above
     }
 
 }

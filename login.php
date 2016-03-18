@@ -1,33 +1,26 @@
 <?php
 
-require_once 'utilities/functions.php';
-require_once 'classes/User.php';
-require_once 'connection.php';
-require_once 'classes/UserTable.php';
+require_once 'utilities/functions.php'; //require the funcitons
+require_once 'classes/User.php'; //user class to create users
+require_once 'connection.php'; //conecction 
+require_once 'classes/UserTable.php'; //connection to user table
 
-start_session();
+start_session(); //session start so information can be saved
 
-// try to register the user - if there are any error/
-// exception, catch it and send the user back to the
-// login form with an error message
+
 try {
     $formdata = array();
     $errors = array();
 
     $input_method = INPUT_POST;
-
+//sanitise the formdata 
     $formdata['username'] = filter_input($input_method, "username", FILTER_SANITIZE_STRING);
     $formdata['password'] = filter_input($input_method, "password", FILTER_SANITIZE_STRING);
 
-    // throw an exception if any of the form fields
-    // are empty
+    //if any of the form fields are empty
     if (empty($formdata['username'])) {
         $errors['username'] = "Username required";
     }
-    //$email = filter_var($formdata['username'], FILTER_VALIDATE_EMAIL);
-    //if ($email != $formdata['username']) {
-    //    $errors['username'] = "Valid email required required";
-    //}
 
     if (empty($formdata['password'])) {
         $errors['password'] = "Password required";

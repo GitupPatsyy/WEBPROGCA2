@@ -6,8 +6,9 @@
  * Date: 01/12/2015
  * Time: 12:03 PM
  */
-class Garage {
+class Bus {
 
+//private class variables
     private $id;
     private $reg;
     private $make;
@@ -17,6 +18,7 @@ class Garage {
     private $service;
     private $garageid;
 
+    //default constructor for the bus object
     public function __construct($id, $r, $m, $md, $eng, $bought, $service, $gid) {
         $this->id = $id;
         $this->reg = $r;
@@ -28,37 +30,44 @@ class Garage {
         $this->garageid = $gid;
     }
 
+//get method for id
     public function getId() {
         return $this->id;
     }
 
-    public function getReg(){
+//get method for reg
+    public function getReg() {
         return $this->reg;
     }
 
+//get method for make
     public function getMake() {
         return $this->make;
     }
 
+//get method for model
     public function getModel() {
         return $this->model;
     }
 
+//get method for enginesize
     public function getSize() {
         return $this->enginesize;
     }
 
+//get method for date bought
     public function getBought() {
         return $this->bought;
     }
 
+//get method for service date
     public function getService() {
         return $this->service;
     }
 
+//get method for garage id
     public function getGarageId() {
         return $this->garageid;
     }
-
 
 }

@@ -7,22 +7,19 @@
  * Time: 3:29 PM
  */
 //
-require_once 'garage.php';
-require_once 'connection.php';
-require_once 'garageTableGateway.php';
-require_once 'gformprocess.php';
+require_once 'garage.php'; //require the garage class
+require_once 'connection.php'; //require the conneciton for db conenction
+require_once 'garageTableGateway.php'; //require garagetable gateway for connecting to the table
+require_once 'gformprocess.php'; //require for form validation 
 
 
-validate($formdata, $errors);
-
+validate($formdata, $errors); //function for validating the formdaata
 //    echo '<pre>';
 //    print_r($errors);
 //    print_r($formdata);
 //    echo "</pre>";
 
-if (empty($errors)) {
-
-
+if (empty($errors)) { //if the errors array is empty set the varibles to the respective formdata
     $garage_address = $formdata["garageAdd"];
     $phone_no = $formdata["phoneNo"];
     $manager_name = $formdata["managerName"];
@@ -41,12 +38,10 @@ if (empty($errors)) {
 
 
 
-    $connection = Connection::getInstance();
-    $gateway = new garageTableGateway($connection);
+    $connection = Connection::getInstance(); //get an instance of the connection
+    $gateway = new garageTableGateway($connection); //connect to the garage table using the connection
 
-    $id = $gateway->insertGarage($garage);
-
-
+    $id = $gateway->insertGarage($garage); //insert the garage object
 //Redirects the user to the specific page
     header('Location: viewall.php');
     exit();
