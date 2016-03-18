@@ -1,36 +1,238 @@
 html {
-   font-family: 'Roboto', sans-serif; 
-   font-weight: lighter;
+    font-family: 'Roboto', sans-serif;
+    font-size: 26px;
+    /*min height is required for a sticky footer
+    page will always be the height of the browser window*/
+    min-height: 100%;
+    position: relative;
 }
+/*navbar styles*/
+.navbar-header {
+    font-size: 40px;
+    color: #cb6c58;
+    border: 2px #cb6c58 solid;
+    padding: 5px 5px 5px 5px;
+}
+
+.nav .navbar-default .navbar-header ul li {
+    color: #F64747;
+}
+
+body {
+    /*margin bottom needed to keep height of footer - and to tmake it sticky*/ 
+    margin-bottom: 100px;
+}
+/*Align text to the centre instead of using an inline style*/
 .center-content {
     text-align: center;
 }
-.usrinput {
-    padding: 5px;
-    align-content: center;
-}
-
-.bodystyle {
-    border: groove gray;
-    height: 50%;
-}
-
+/*styling for any errors that are produced by the php validation*/
 .errors {
     display: inline-block;
     text-align: left;
     padding-left: 5px;
     color: red;
 }
+/*display the list items in a block*/
+li {
+    display: inline-block;
+    padding-right: 20px;
+    padding-left: 20px;
 
-.edit_button {
-    height: 30px;
-    width: 80px;
 }
+/*list item links, static state*/
+li a {
+    color: #F64747;
+}
+/*jumbotron style*/
+.jumbotron {
+    background: url('../img/background.jpg');
+    width: 100%;
+    background-size: cover;
+    min-height: 700px;
+    background-repeat: no-repeat;
+}
+/*to clsoe the whitegap inbetween the rows*/
+.header_style {
+}
+/*styling for the row that comes after the jumbotron*/
+.home_content{
+    min-height: 600px;
+    background-color: #EEEEEE;
+}
+#databaseAdd {
+    margin-bottom: 200px;
+}
+
+/*Table style*/
+table {
+    opacity: .9;
+}
+.rpb-table {
+    margin: 1em 0;
+    min-width: 300px;
+}
+.rpb-table tr {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.rpb-table th {
+}
+.rpb-table td {
+    display: block;
+}
+.rpb-table td:first-child {
+    padding-top: .5em;
+}
+.rpb-table td:last-child {
+    padding-bottom: .5em;
+}
+.rpb-table td:before {
+    content: attr(data-th) ": ";
+    font-weight: bold;
+    width: 6.5em;
+    display: inline-block;
+}
+@media (min-width: 480px) {
+    .rwd-table td:before {
+        display: none;
+    }
+}
+.rpb-table th, .rpb-table td {
+    text-align: left;
+}
+@media (min-width: 480px) {
+    .rpb-table th, .rpb-table td {
+        display: table-cell;
+        padding: .25em .5em;
+    }
+    .rpb-table th:first-child, .rpb-table td:first-child {
+        padding-left: 0;
+    }
+    .rpb-table th:last-child, .rpb-table td:last-child {
+        padding-right: 0;
+    }
+}
+/*style for custom table*/
+.rpb-table {
+    background: #cb6c58;
+    color: #fff;
+    border-radius: .4em;
+    overflow: hidden;
+}
+.rpb-table tr {
+    border-color: #46637f;
+}
+.rpb-table th, .rwd-table td {
+    margin: .5em 1em;
+}
+@media (min-width: 480px) {
+    .rpb-table th, .rpb-table td {
+        padding: 1em !important;
+    }
+}
+.rpb-table th, .rpb-table td:before {
+    color: #dd5;
+}
+th, td {
+    text-align: center;
+    padding:  10px;
+}
+
+/*Footer style*/
 .foot {
     position: absolute;
     left: 0;
     bottom: 0;
+    /*height must be the same as the margin bottom above to have a stikcy footer*/
     height: 100px;
     width: 100%;
+    background-color: #ECECEC; 
+}
+
+/*Section test styling*/ 
+.section {
+
+}
+/*styling for the img size of the section div*/
+.section_img {
+    position: relative;
+    float: left;
+    width:  300px;
+    height: 300px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+
+/*.border {
+    border: 1px solid white;
+    -webkit-box-shadow: 0px 0px 0px 10px rgba(0,0,0,1);
+    -moz-box-shadow: 0px 0px 0px 10px rgba(0,0,0,1);
+    box-shadow: 0px 0px 0px 10px rgba(0,0,0,0);
+}*/
+/*for home page features*/
+.feature {
+    min-height: 200px;
+    margin-top: 600px;
+}
+
+.feature h2 {
+    color: #F64747;
+}
+
+.feature p {
+    color: #F1A9A0;
+}
+/*icons on the landing page*/
+.icon-box {
+    border: 4px #cb6c58 solid;
+    padding: 5px 5px 5px 5px;
+}
+
+/*for centering images*/ 
+.center-image {    
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/*style for hr after the nav*/ 
+.nav-hr {
+    border: 0;
+    height: 0; /* Firefox... */
+    box-shadow: 0 0 10px 1px #F1A9A0;
+}
+/*make the garage table sit under the jumbotron
+.garage-table {
+    min-height: 200px;
+    margin-top: 600px;
+}
+make the bus table sit under the jumbotron
+.bus-table {
+    min-height: 200px;
+    margin-top: 600px;
+}*/
+
+/*nav subtext style*/
+.nav-subtext {
+    color: #cb6c58;
+    border-left: 7px #cb6c58 solid;
+    margin-top: 10px;
+
+}
+/*setting the height of image tiles*/
+.img-tiles {
+    height: 835px;
+}
+/*bottom table spacing*/
+.table-spacing {
+    margin-bottom: 100px;
+}
+/*height for viewing both tabels on one page*/
+.table-height {
+    height: 500px;
 }
 

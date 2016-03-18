@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * The class will insert users into the database and retrieve user data from the database
  *
@@ -23,6 +17,7 @@ class UserTable {
     public function __construct($connection) {
         $this->link = $connection; //the link is equal to conneciton
     }
+
     //Insert function for user
     public function insert($user) {
         if (!isset($user)) {
@@ -53,9 +48,9 @@ class UserTable {
         //return the id
         return $id;
     }
-    
+
     //end of insert user function
-  public function getUserByUn($username) {
+    public function getUserByUn($username) {
         $sql = "SELECT * FROM web_users WHERE username = :username";
         $params = array('username' => $username);
         $stmt = $this->link->prepare($sql);
@@ -74,26 +69,27 @@ class UserTable {
         }
         return $user;
     }
-  //Function for deleting a user
-  public function delete($user) {
-        if(!isset($user)){
+
+    //Function for deleting a user
+    public function delete($user) {
+        if (!isset($user)) {
             throw new Exception("User required");
         }
         $id = $user->getId();
-        if($id == null){
+        if ($id == null) {
             throw new Exception("User Id required");
         }
         $sql = "DELETE FROM web_users WHERE id = :id";
-        $params = array('id' =>$user->getId());
+        $params = array('id' => $user->getId());
         $stmt = $this->link->prepare($sql);
         $status = $stmt->execute($params);
-        if($status != true){
+        if ($status != true) {
             $errorInfo = $stmt->errorInfo();
-            throw new Exception("Could not delete the user " . $errorInfo[2]) ;
+            throw new Exception("Could not delete the user " . $errorInfo[2]);
         }
-        
     }
-  public function getUsers() {
+
+    public function getUsers() {
         $sql = "SELECT * FROM web_users";
         $stmt = $this->link->prepare($sql);
         $status = $stmt->execute();
@@ -116,7 +112,8 @@ class UserTable {
         }
         return $users;
     }
-  public function update($user) {
+
+    public function update($user) {
         if (!isset($user)) {
             throw new Exception("User required");
         }
@@ -136,4 +133,5 @@ class UserTable {
             throw new Exception("Could not update user: " . $errorInfo[2]);
         }
     }
+
 }
